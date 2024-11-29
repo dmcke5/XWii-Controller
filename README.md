@@ -23,7 +23,7 @@ If you're printing the housing at home on an FDM printer here's some tips to get
 
 Stand the front housing on its top edge and lean it forward 45 degrees. Enable supports for surfaces over 55 degrees and use a raft to ensure good adhesion to the bed. Ensure Z seam is on the inside! Only minimal supports should be generated, just to support the bottom of the button holes. If you're using a bed-slinger, orient your part so that it runs with the direction your bed moves to reduce wobble.
 
-![Alt text](Print orientation front.png "Print orientation front")
+![Alt text](Print_orientation_front.png "Print orientation front")
 
 #### Rear Housing
 
