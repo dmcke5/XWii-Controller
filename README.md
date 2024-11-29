@@ -29,20 +29,20 @@ Stand the front housing on its top edge and lean it forward 45 degrees. Enable s
 
 Stand the rear housing on its top edge and lean it back 30 degrees. Enable supports for surfaces over 55 degrees and use a raft to ensure good adhesion to the bed. Ensure Z seam is on the inside! Some supports will be generated on the inside but none are in contact with critical surfaces making cleanup relatively easy. Same as the front, ensure orientation matches your bed movements for bed slinger printers!
 
-![Alt text](Print orientation rear.png "Print orientation rear")
+![Alt text](Print_orientation_rear.png "Print orientation rear")
 
 #### Shoulder Buttons
 
 Shoulder buttons should be printed flat on the bed, to ensure the spring is working with the layers rather than against them. Enable supports so the top edge of the buttons aren't left hanging.
 
-![Alt text](Print orientation shoulders.png "Print orientation shoulders")
+![Alt text](Print_orientation_shoulders.png "Print orientation shoulders")
 
 
 #### Trigger Buttons
 
 Stand trigger buttons on their end and rotate forward 30 degrees. Enable supports for surfaces over 55 degrees and enable raft. Supports should be generated in the holes and for the magnet mount only leaving very little cleanup required.
 
-![Alt text](Print orientation triggers.png "Print orientation triggers")
+![Alt text](Print_orientation_triggers.png "Print orientation triggers")
 
 # Bill of materials
 
