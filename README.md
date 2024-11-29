@@ -15,6 +15,35 @@ Features:
 
 For now, this controller is wired only but I plan to add a wireless version of the design at some point in the future!
 
+# Print Orientation
+
+If you're printing the housing at home on an FDM printer here's some tips to get the best finish possible!
+
+#### Front Housing
+
+Stand the front housing on its top edge and lean it forward 45 degrees. Enable supports for surfaces over 55 degrees and use a raft to ensure good adhesion to the bed. Ensure Z seam is on the inside! Only minimal supports should be generated, just to support the bottom of the button holes. If you're using a bed-slinger, orient your part so that it runs with the direction your bed moves to reduce wobble.
+
+![Alt text](Print orientation front.png "Print orientation front")
+
+#### Rear Housing
+
+Stand the rear housing on its top edge and lean it back 30 degrees. Enable supports for surfaces over 55 degrees and use a raft to ensure good adhesion to the bed. Ensure Z seam is on the inside! Some supports will be generated on the inside but none are in contact with critical surfaces making cleanup relatively easy. Same as the front, ensure orientation matches your bed movements for bed slinger printers!
+
+![Alt text](Print orientation rear.png "Print orientation rear")
+
+#### Shoulder Buttons
+
+Shoulder buttons should be printed flat on the bed, to ensure the spring is working with the layers rather than against them. Enable supports so the top edge of the buttons aren't left hanging.
+
+![Alt text](Print orientation shoulders.png "Print orientation shoulders")
+
+
+#### Trigger Buttons
+
+Stand trigger buttons on their end and rotate forward 30 degrees. Enable supports for surfaces over 55 degrees and enable raft. Supports should be generated in the holes and for the magnet mount only leaving very little cleanup required.
+
+![Alt text](Print orientation triggers.png "Print orientation triggers")
+
 # Bill of materials
 
 #### PCB's:
@@ -46,6 +75,10 @@ For now, this controller is wired only but I plan to add a wireless version of t
 2x PS5 Hall sensor joysticks - https://www.aliexpress.com/item/1005007688806322.html
 
 1x Xbox rumble motor (pair) - https://www.aliexpress.com/item/1005006375129706.html
+
+2x PS4/5 Trigger Springs - https://www.aliexpress.com/item/1005005844578554.html
+
+2x 3x1mm Neodymium Magnets - https://www.aliexpress.com/item/1005006619263188.html
 
 1x USB Data Cable (End will be removed so only need to ensure it has the correct end for your device on one end of the cable)
 
