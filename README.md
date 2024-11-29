@@ -3,6 +3,18 @@ An Xbox One style controller with a Wii U layout!
 
 ![Alt text](Title.png "Xii-U Controller")
 
+The Wii U gamepad layout is a fan-favourite for many gamers yet it is rarely used in the current generation of controllers. This open source project brings the Wii-U layout back but in a shape more akin to an Xbox controller and provides you with a cool piece of tech that you can be proud to say you built yourself!
+
+Features:
+- Wii-U controller layout
+- Hall Effect Joysticks
+- Hall Effect Triggers
+- Rumble
+- Xinput Compatible
+- RGB Status indicator home button
+
+For now, this controller is wired only but I plan to add a wireless version of the design at some point in the future!
+
 # Bill of materials
 
 #### PCB's:
@@ -34,6 +46,8 @@ An Xbox One style controller with a Wii U layout!
 2x PS5 Hall sensor joysticks - https://www.aliexpress.com/item/1005007688806322.html
 
 1x Xbox rumble motor (pair) - https://www.aliexpress.com/item/1005006375129706.html
+
+1x USB Data Cable (End will be removed so only need to ensure it has the correct end for your device on one end of the cable)
 
 #### Hardware:
 
