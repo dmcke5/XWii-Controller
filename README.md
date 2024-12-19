@@ -98,5 +98,5 @@ Stand trigger buttons on their end and rotate forward 30 degrees. Enable support
 
 Follow the diagram below for locations of components. Pay close attention to orientation of parts U1, Y1, U7 and D1 as they can be fitted in the wrong direction and cause damage. Align marks on all these components with the alignment marks on the PCB.
 
-![Alt text](Front PCB BOM.png "Front PCB BOM")
+![Alt text](Front_PCB_BOM.png "Front PCB BOM")
 
