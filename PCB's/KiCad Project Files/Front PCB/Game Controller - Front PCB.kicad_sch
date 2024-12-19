@@ -3761,7 +3761,17 @@
 	)
 	(wire
 		(pts
-			(xy 294.64 233.68) (xy 300.99 233.68)
+			(xy 317.5 233.68) (xy 317.5 231.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "00a0b0fd-6a42-4115-836f-785c480c45b6")
+	)
+	(wire
+		(pts
+			(xy 294.64 233.68) (xy 317.5 233.68)
 		)
 		(stroke
 			(width 0)
@@ -4201,6 +4211,16 @@
 	)
 	(wire
 		(pts
+			(xy 303.53 247.65) (xy 298.45 247.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43fbcb74-486b-4d90-a09d-0add6fbd2874")
+	)
+	(wire
+		(pts
 			(xy 300.99 226.06) (xy 300.99 228.6)
 		)
 		(stroke
@@ -4341,16 +4361,6 @@
 	)
 	(wire
 		(pts
-			(xy 317.5 228.6) (xy 317.5 231.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5efd9654-526e-4702-8f17-5cf8ac88c2af")
-	)
-	(wire
-		(pts
 			(xy 124.46 259.08) (xy 120.65 259.08)
 		)
 		(stroke
@@ -4421,16 +4431,6 @@
 	)
 	(wire
 		(pts
-			(xy 300.99 233.68) (xy 300.99 236.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6f9d14e9-5f4c-4d2c-b109-697d61357ccc")
-	)
-	(wire
-		(pts
 			(xy 247.65 110.49) (xy 247.65 121.92)
 		)
 		(stroke
@@ -4448,16 +4448,6 @@
 			(type default)
 		)
 		(uuid "7290659b-318d-4e00-bc4d-d57d1019b1d7")
-	)
-	(wire
-		(pts
-			(xy 300.99 236.22) (xy 303.53 236.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7347e51b-36ad-47b5-a890-e90615e8a07f")
 	)
 	(wire
 		(pts
@@ -5051,6 +5041,16 @@
 	)
 	(wire
 		(pts
+			(xy 298.45 247.65) (xy 298.45 245.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c32b5dd2-b645-4fa8-9011-6445475766eb")
+	)
+	(wire
+		(pts
 			(xy 252.73 228.6) (xy 259.08 228.6)
 		)
 		(stroke
@@ -5158,6 +5158,16 @@
 			(type default)
 		)
 		(uuid "db84a3e6-6209-471b-877a-8e30adac0872")
+	)
+	(wire
+		(pts
+			(xy 303.53 236.22) (xy 303.53 247.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ddcd14b7-6465-4737-bfbe-8fb0eb844647")
 	)
 	(wire
 		(pts
@@ -5308,6 +5318,16 @@
 			(type default)
 		)
 		(uuid "fd9ebc9e-03fa-4586-89b7-e2c6f52aafdb")
+	)
+	(text "Note: Pads 4+1 Swapped to \nallow mounting on rear \nface of PCB"
+		(exclude_from_sim no)
+		(at 321.31 243.586 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "0d95f28d-84b2-493b-a750-bfe0ff0da5a2")
 	)
 	(label "DOWN"
 		(at 118.11 219.71 0)
@@ -6146,6 +6166,72 @@
 			(project "Game Controller - Front PCB"
 				(path "/ff343239-2598-48f4-ac52-06d80fe426a2"
 					(reference "#PWR013")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:VCC")
+		(at 298.45 245.11 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "12a3b5d2-f8ce-466c-826a-b51d4ddf9ec5")
+		(property "Reference" "#PWR020"
+			(at 298.45 248.92 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VCC"
+			(at 298.45 240.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 298.45 245.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 298.45 245.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 298.45 245.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "cda78ad4-d42e-42bd-bb32-091c09656cc8")
+		)
+		(instances
+			(project "Game Controller - Front PCB"
+				(path "/ff343239-2598-48f4-ac52-06d80fe426a2"
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -10758,72 +10844,6 @@
 			(project "Game Controller - Front PCB"
 				(path "/ff343239-2598-48f4-ac52-06d80fe426a2"
 					(reference "#PWR010")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:VCC")
-		(at 317.5 228.6 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ec40a3bc-5428-46a8-a901-36a23818b32e")
-		(property "Reference" "#PWR023"
-			(at 317.5 232.41 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "VCC"
-			(at 317.5 223.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 317.5 228.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 317.5 228.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 317.5 228.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "8c3f5b9d-d773-4d55-99dd-5f9140015d55")
-		)
-		(instances
-			(project "Game Controller - Front PCB"
-				(path "/ff343239-2598-48f4-ac52-06d80fe426a2"
-					(reference "#PWR023")
 					(unit 1)
 				)
 			)
