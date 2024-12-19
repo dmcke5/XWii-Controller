@@ -100,3 +100,8 @@ Follow the diagram below for locations of components. Pay close attention to ori
 
 ![Alt text](Front_PCB_BOM.png "Front PCB BOM")
 
+#### Rear PCB:
+
+Follow the diagram below for locations of components. Fit joysticks to opposite side of PCB.
+
+![Alt text](Rear_PCB_BOM.png "Rear PCB BOM")
