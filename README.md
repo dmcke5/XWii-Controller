@@ -46,13 +46,13 @@ Stand trigger buttons on their end and rotate forward 30 degrees. Enable support
 
 # Bill of materials
 
-#### PCB's:
+#### PCB's
 
 1x Front PCB (Must use ENIG finish!)
 
 1x Rear PCB
 
-#### 3D Printing:
+#### 3D Printing
 
 1x Controller Housing Top
 
@@ -66,7 +66,7 @@ Stand trigger buttons on their end and rotate forward 30 degrees. Enable support
 
 1x RHS Trigger
 
-#### Purchase:
+#### Purchase
 
 1x Switch lite button set - https://www.aliexpress.com/item/1005007266706005.html
 
@@ -82,14 +82,21 @@ Stand trigger buttons on their end and rotate forward 30 degrees. Enable support
 
 1x USB Data Cable (End will be removed so only need to ensure it has the correct end for your device on one end of the cable)
 
-#### Hardware:
+#### Hardware
 
 5x M3x5x5 Threaded Inserts
 
-2x M2x3.2x3 Threaded Inserts
-
-3x M2x3.2x4 Threaded Inserts
+5x M2x3.2x3 Threaded Inserts
 
 5x M3x8 SHCS Screws
 
 6x M2x4 SHCS Screws
+
+# PCB Assembly
+
+#### Front PCB:
+
+Follow the diagram below for locations of components. Pay close attention to orientation of parts U1, Y1, U7 and D1 as they can be fitted in the wrong direction and cause damage. Align marks on all these components with the alignment marks on the PCB.
+
+![Alt text](Front PCB BOM.png "Front PCB BOM")
+
