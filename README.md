@@ -80,6 +80,10 @@ Stand trigger buttons on their end and rotate forward 30 degrees. Enable support
 
 2x 3x1mm Neodymium Magnets - https://www.aliexpress.com/item/1005006619263188.html
 
+1x 6028 RGB LED - https://www.aliexpress.com/item/1005003719602946.html
+
+1x WS2811 IC - https://www.aliexpress.com/item/32844615804.html
+
 1x USB Data Cable (End will be removed so only need to ensure it has the correct end for your device on one end of the cable)
 
 #### Hardware
