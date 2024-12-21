@@ -1,4 +1,4 @@
-# Xii-U Controller
+# XWii Controller
 An Xbox One style controller with a Wii U layout!
 
 ![Alt text](Title.png "Xii-U Controller")
