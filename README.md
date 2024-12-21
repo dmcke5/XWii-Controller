@@ -111,3 +111,12 @@ Follow the diagram below for locations of components. Pay close attention to ori
 Follow the diagram below for locations of components. Fit joysticks to opposite side of PCB.
 
 ![Alt text](Rear_PCB_BOM.png "Rear PCB BOM")
+
+# Software
+
+You will need to install these libraries to be able to compile the code:
+
+XInput: https://github.com/dmadison/ArduinoXInput
+FastLED: https://github.com/FastLED/FastLED
+
+Then simply compile and upload to your controller using the Leonardo w/xinput board option. Please note, once the code is uploaded you will need to re-flash the bootloader to be able to upload code again due to a limitation in the way the xinput library works.
