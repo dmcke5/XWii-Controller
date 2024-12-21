@@ -90,7 +90,9 @@ Stand trigger buttons on their end and rotate forward 30 degrees. Enable support
 
 5x M3x5x5 Threaded Inserts
 
-5x M2x3.2x3 Threaded Inserts
+2x M2x3.2x3 Threaded Inserts
+
+3x M2x3.2x4 Threaded Inserts
 
 5x M3x8 SHCS Screws
 
