@@ -74,7 +74,7 @@ Stand trigger buttons on their end and rotate forward 30 degrees. Enable support
 
 2x PS5 Hall sensor joysticks - https://www.aliexpress.com/item/1005007688806322.html
 
-1x Xbox rumble motor (pair) - https://www.aliexpress.com/item/1005006375129706.html
+1x Xbox rumble motor (pair) - https://www.aliexpress.com/item/1005002877455453.html
 
 2x PS4/5 Trigger Springs - https://www.aliexpress.com/item/1005005844578554.html
 
