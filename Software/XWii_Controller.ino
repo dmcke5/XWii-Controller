@@ -11,9 +11,13 @@ uint8_t playerNo;
 int ledState = 2;
 unsigned long ledTimer;
 
-//#define PWM47k  3   //  46875 Hz
-//#define PWM6        OCR4D
-//#define PWM6_13_MAX OCR4C
+#define PWM62k   1   //62500 Hz
+#define PWM8k    2   // 7812 Hz
+#define PWM1k    3   //  976 Hz
+
+#define PWM9   OCR1A
+#define PWM10  OCR1B
+#define PWM11  OCR1C
 
 //Default Joystick calibration settings and EEPROM storage Address
 int minLeftX = 0; //EEPROM Adr = 1
@@ -75,8 +79,8 @@ byte buttonPins[15] = {15,16, 14, 8, 11, 5, 13, 3, 2, 0, 1, 4, 12, 6, 7}; //R1, 
 #define rightX A5
 #define rightY A4
 
-byte smallMotor = 9;
-byte largeMotor = 10;
+byte smallMotor = 9; 
+byte largeMotor = 10; 
 
 //Button state arrays
 byte lastButtonState[15]; //Empty State array for buttons last sent state.
@@ -107,10 +111,14 @@ void setup() {
   pinMode(rightX, INPUT); //Set input for right joystick X
   pinMode(rightY, INPUT); //Set input for right joystick Y
 
-  //pwm613configure(PWM47k);
-  //pwmSet6(0);
   pinMode(smallMotor, OUTPUT);
   pinMode(largeMotor, OUTPUT);
+
+  //Configure Fast PWM For Rumble Motors
+  pwm91011configure(PWM1k);
+  pwmSet9(0);
+  pwmSet10(0);
+  
 
   eepromLoad();
   
@@ -146,7 +154,6 @@ void loop() {
     FastLED.show();
     ledState = 0;
   }
-  //Serial.println("Test");
 }
 
 void gamepadMode(){ //Controller Gamepad mode
@@ -158,17 +165,17 @@ void gamepadMode(){ //Controller Gamepad mode
     }
   }
   if(rumbleRight > 0){
-    analogWrite(smallMotor, rumbleRight);
-    //PWM6 = rumbleLeft;
+    //analogWrite(smallMotor, rumbleRight);
+    PWM9 = rumbleRight;
   } else {
-    //PWM6 = 0;
-    digitalWrite(smallMotor, 0);
+    PWM9 = 0;
+    //digitalWrite(smallMotor, 0);
   }
   if(rumbleLeft > 0){
-    analogWrite(largeMotor, rumbleLeft);
+    PWM9 = rumbleLeft;
   } else {
-    digitalWrite(largeMotor, 0);
-  }
+    rumbleLeft
+  }*/
 
   XInput.setButton(BUTTON_A, lastButtonState[7]);
 	XInput.setButton(BUTTON_B, lastButtonState[8]);
@@ -417,9 +424,9 @@ void joystickCalibration(){ //Joystick Calibration Sequence
       maxRightY = 0;
       calibrationStep = 2;
       Serial.println(leftZNeutral);
-      digitalWrite(smallMotor, HIGH);
+      PWM9=255;
       delay(100);
-      digitalWrite(smallMotor, LOW);
+      PWM9=0;
       delay(150);
     }
   } else if(calibrationStep == 2){
@@ -450,9 +457,9 @@ void joystickCalibration(){ //Joystick Calibration Sequence
       maxL2 = 0;
       minR2 = 1023;
       maxR2 = 0;
-      digitalWrite(smallMotor, HIGH);
+      PWM9=255;
       delay(100);
-      digitalWrite(smallMotor, LOW);
+      PWM9=0;
       delay(150);
     }
   } else if(calibrationStep == 3){
@@ -481,9 +488,9 @@ void joystickCalibration(){ //Joystick Calibration Sequence
       } else {
         invertRightZ = 0;
       }
-      digitalWrite(smallMotor, HIGH);
+      PWM9=255;
       delay(100);
-      digitalWrite(smallMotor, LOW);
+      PWM9=0;
       delay(150);
       writeCalibrationData(); //Update EEPROM
       buildLUTs();
@@ -526,24 +533,23 @@ XInput LED Patterns (currently unused):
 	}
 }
 
-void pwm613configure(int mode) {
-  TCCR4A=0;// TCCR4A configuration
-  TCCR4B=mode;// TCCR4B configuration
-  TCCR4C=0;// TCCR4C configuration
-  TCCR4D=0;// TCCR4D configuration
-  TCCR4D=0;// TCCR4D configuration
-
-  // PLL Configuration
-  // Use 96MHz / 2 = 48MHz
-  PLLFRQ=(PLLFRQ&0xCF)|0x30;
-  // PLLFRQ=(PLLFRQ&0xCF)|0x10; // Will double all frequencies
-
-  OCR4C=255;// Terminal count for Timer 4 PWM
+void pwm91011configure(int mode) {
+  TCCR1A=1;
+  TCCR1B=mode|0x08; 
+  TCCR1C=0;
 }
 
-void pwmSet6(int value) {
-  OCR4D=value;   // Set PWM value
-  DDRD|=1<<7;    // Set Output Mode D7
-  TCCR4C|=0x09;  // Activate channel D
+void pwmSet9(int value) // Argument is PWM between 0 and 255
+{
+OCR1A=value;   // Set PWM value
+DDRB|=1<<5;    // Set Output Mode B5
+TCCR1A|=0x80;  // Activate channel
+}
+
+void pwmSet10(int value)  // Argument is PWM between 0 and 255
+{
+OCR1B=value;   // Set PWM value
+DDRB|=1<<6;    // Set Output Mode B6
+TCCR1A|=0x20;  // Set PWM value
 }
 
