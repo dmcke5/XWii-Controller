@@ -11,9 +11,9 @@ uint8_t playerNo;
 int ledState = 2;
 unsigned long ledTimer;
 
-#define PWM47k  3   //  46875 Hz
-#define PWM6        OCR4D
-#define PWM6_13_MAX OCR4C
+//#define PWM47k  3   //  46875 Hz
+//#define PWM6        OCR4D
+//#define PWM6_13_MAX OCR4C
 
 //Default Joystick calibration settings and EEPROM storage Address
 int minLeftX = 0; //EEPROM Adr = 1
@@ -52,6 +52,8 @@ const bool invertLeftY = true;        //----------------------------------------
 const bool invertLeftX = false;       //Change these settings for Inverted mounting 
 const bool invertRightY = false;      //of joysticks.
 const bool invertRightX = false;      //------------------------------------------
+int invertLeftZ = 0;             //Set automatically during calibration. Stored: EEPROM Adr = 33
+int invertRightZ = 0;            //Set automatically during calibration. Stored: EEPROM Adr = 35
 const int deadBand = 10;              //Joystick deadband settings. 
 const bool useDeadband = true;        //
 const int earlyStop = 30;             //Distance from end of travel to achieve full axis movement.
@@ -59,6 +61,8 @@ const int triggerDeadband = 5;       //Trigger Deadband
 
 boolean calibrationMode = false;  //Set to true to open Calibration menu
 int calibrationStep = 1;          //Stage of calibration process
+int leftZNeutral;                 //Used during calibration process to record trigger neutral position
+int rightZNeutral;                //and correct for reversed magnet orientation.
 
 //Controller IO setup
 int buttonCount = 15;                   //Number of buttons connected
@@ -142,6 +146,7 @@ void loop() {
     FastLED.show();
     ledState = 0;
   }
+  //Serial.println("Test");
 }
 
 void gamepadMode(){ //Controller Gamepad mode
@@ -202,22 +207,38 @@ void joystickInput(){ //Read joysticks and compare to LUT's . Read triggers and 
   }
 
   var = analogRead(rightZ);
-  if(var > minR2 + triggerDeadband){ //Skip scaling and just output minimum if trigger isn't pressed to save time
-    var = triggerScale(var, minR2, maxR2);
-    XInput.setTrigger(TRIGGER_RIGHT, var);
+  if(invertRightZ){
+    if(var < maxR2 - triggerDeadband){ //Skip scaling and just output minimum if trigger isn't pressed to save time
+      var = triggerScale(var, minR2, maxR2, invertRightZ);
+      XInput.setTrigger(TRIGGER_RIGHT, var);
+    } else {
+      XInput.setTrigger(TRIGGER_RIGHT, 0);
+    }
   } else {
-    XInput.setTrigger(TRIGGER_RIGHT, minR2);
+    if(var > minR2 + triggerDeadband){ //Skip scaling and just output minimum if trigger isn't pressed to save time
+      var = triggerScale(var, minR2, maxR2, invertRightZ);
+      XInput.setTrigger(TRIGGER_RIGHT, var);
+    } else {
+      XInput.setTrigger(TRIGGER_RIGHT, 0);
+    }
   }
-  
 
   var = analogRead(leftZ);
-  if(var > minL2 + triggerDeadband){  //Skip scaling and just output minimum if trigger isn't pressed to save time
-    var = triggerScale(var, minL2, maxL2);
-    XInput.setTrigger(TRIGGER_LEFT, var);
+  if(invertLeftZ){
+    if(var < maxL2 - triggerDeadband){  //Skip scaling and just output minimum if trigger isn't pressed to save time
+      var = triggerScale(var, minL2, maxL2, invertLeftZ);
+      XInput.setTrigger(TRIGGER_LEFT, var);
+    } else {
+      XInput.setTrigger(TRIGGER_LEFT, 0);
+    }
   } else {
-    XInput.setTrigger(TRIGGER_LEFT, minL2);
+    if(var > minL2 + triggerDeadband){  //Skip scaling and just output minimum if trigger isn't pressed to save time
+      var = triggerScale(var, minL2, maxL2, invertLeftZ);
+      XInput.setTrigger(TRIGGER_LEFT, var);
+    } else {
+      XInput.setTrigger(TRIGGER_LEFT, 0);
+    }
   }
-  
 }
 
 void buttonRead(){ //Read button inputs and set state arrays.
@@ -228,16 +249,21 @@ void buttonRead(){ //Read button inputs and set state arrays.
     }
   }
 }
-
-int triggerScale(int value, int min, int max){  //Scales input "value" to 0 - 254 for correct output whilst taking into account deadband.
-  if(value < min + triggerDeadband){
-    value = min;
-  }
-  if(value > max - triggerDeadband){
+//6,4,200,1
+int triggerScale(int value, int min, int max, int invert){  //Scales input "value" to 0 - 254 for correct output whilst taking into account deadband.
+//int temp;
+  if(value > max){
     value = max;
   }
-  
-  return map(value, min, max, 0, 254);
+  if(value < min){
+    value = min;
+  }
+
+  if(!invert){
+    return map(value, min, max, 0, 254);
+  } else {
+    return map(value, max, min, 0, 254);
+  }
 }
 
 void eepromLoad(){ //Loads stored settings from EEPROM
@@ -279,9 +305,11 @@ void readCalibrationData(){ //Read calibration data from EEPROM
 // L2
   minL2 = readIntFromEEPROM(25);
   maxL2 = readIntFromEEPROM(27);
+  invertLeftZ = readIntFromEEPROM(33);
 // R2
   minR2 = readIntFromEEPROM(29);
   maxR2 = readIntFromEEPROM(31);
+  invertRightZ = readIntFromEEPROM(35);
 }
 
 void writeCalibrationData(){ //Store calibration data in EEPROM
@@ -304,9 +332,11 @@ void writeCalibrationData(){ //Store calibration data in EEPROM
 // L2
   writeIntIntoEEPROM(25, minL2);
   writeIntIntoEEPROM(27, maxL2);
+  writeIntIntoEEPROM(33, invertLeftZ);
 // R2
   writeIntIntoEEPROM(29, minR2);
   writeIntIntoEEPROM(31, maxR2);
+  writeIntIntoEEPROM(35, invertRightZ);
 }
 
 void lutScaleFactor(){ //Calculates "scale factor" to ensure maximum resolution of LUT's with given memory limitations.
@@ -366,6 +396,7 @@ int joystickScale(int value, int min, int mid, int max){
 }
 
 void joystickCalibration(){ //Joystick Calibration Sequence
+
   if(calibrationStep == 1){
     buttonRead();
     if(lastButtonState[7] == 1){
@@ -373,6 +404,8 @@ void joystickCalibration(){ //Joystick Calibration Sequence
       midRightY = analogRead(rightY);
       midLeftX = analogRead(leftX);
       midLeftY = analogRead(leftY);
+      leftZNeutral = analogRead(leftZ);
+      rightZNeutral = analogRead(rightZ);
       delay(50);
       minLeftX = midLeftX;
       minLeftY = midLeftY;
@@ -383,6 +416,7 @@ void joystickCalibration(){ //Joystick Calibration Sequence
       maxRightX = 0;
       maxRightY = 0;
       calibrationStep = 2;
+      Serial.println(leftZNeutral);
       digitalWrite(smallMotor, HIGH);
       delay(100);
       digitalWrite(smallMotor, LOW);
@@ -433,6 +467,20 @@ void joystickCalibration(){ //Joystick Calibration Sequence
       if(var < minL2) minL2 = var;
     }
     if(lastButtonState[7] == 1){ //Complete Calibration
+    Serial.println(minL2);
+    Serial.println(maxL2);
+      if(leftZNeutral > minL2){
+        invertLeftZ = 1;
+        Serial.println("Left Inverted");
+      } else {
+        invertLeftZ = 0;
+      }
+      if(rightZNeutral > minR2){
+        invertRightZ = 1;
+        Serial.println("Right Inverted");
+      } else {
+        invertRightZ = 0;
+      }
       digitalWrite(smallMotor, HIGH);
       delay(100);
       digitalWrite(smallMotor, LOW);
@@ -473,7 +521,7 @@ XInput LED Patterns (currently unused):
   
 */
 	else if (packetType == (uint8_t) XInputReceiveType::Rumble) {
-		rumbleLeft = XInput.getRumbleLeft() / 4;
+		rumbleLeft = XInput.getRumbleLeft();
     rumbleRight = XInput.getRumbleRight();
 	}
 }
