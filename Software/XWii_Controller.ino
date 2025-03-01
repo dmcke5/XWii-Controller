@@ -172,10 +172,10 @@ void gamepadMode(){ //Controller Gamepad mode
     //digitalWrite(smallMotor, 0);
   }
   if(rumbleLeft > 0){
-    PWM9 = rumbleLeft;
+    PWM10 = rumbleLeft;
   } else {
-    rumbleLeft
-  }*/
+    PWM10 = 0;
+  }
 
   XInput.setButton(BUTTON_A, lastButtonState[7]);
 	XInput.setButton(BUTTON_B, lastButtonState[8]);
